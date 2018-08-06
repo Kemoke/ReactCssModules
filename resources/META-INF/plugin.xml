@@ -1,0 +1,40 @@
+<idea-plugin>
+  <id>kemoke.net.cssmodule</id>
+  <name>React Css Modules</name>
+  <version>1.0</version>
+  <vendor email="mail@kemoke.net" url="https://www.kemoke.net">Kemoke</vendor>
+
+  <description><![CDATA[
+      Supports css modules in react with anonymous references and named references
+    ]]></description>
+
+  <change-notes><![CDATA[
+       Initial release
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <depends>com.intellij.modules.lang</depends>
+  <depends>JavaScript</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+
+    <psi.referenceContributor implementation="net.kemoke.cssmodules.psi.ReferenceContributor" />
+
+    <completion.contributor language="JSX Harmony" implementationClass="net.kemoke.cssmodules.ide.CompletionContributor" />
+
+    <annotator language="JSX Harmony" implementationClass="net.kemoke.cssmodules.ide.UnknownCssModuleAnnotator" />
+
+    <intentionAction>
+      <className>net.kemoke.cssmodules.ide.CreateCssClassIntention</className>
+      <category>CSS Modules</category>
+    </intentionAction>
+
+  </extensions>
+  <actions>
+    <!-- Add your actions here -->
+  </actions>
+
+</idea-plugin>
