@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>kemoke.net.cssmodule</id>
   <name>React Css Modules</name>
-  <version>1.0</version>
+  <version>1.1</version>
   <vendor email="mail@kemoke.net" url="https://www.kemoke.net">Kemoke</vendor>
 
   <description><![CDATA[
@@ -9,7 +9,7 @@
     ]]></description>
 
   <change-notes><![CDATA[
-       Initial release
+       Fix crash caused by missing intention description
     ]]>
   </change-notes>
 
@@ -30,6 +30,7 @@
     <intentionAction>
       <className>net.kemoke.cssmodules.ide.CreateCssClassIntention</className>
       <category>CSS Modules</category>
+      <descriptionDirectoryName>CreateCssClassIntention</descriptionDirectoryName>
     </intentionAction>
 
   </extensions>

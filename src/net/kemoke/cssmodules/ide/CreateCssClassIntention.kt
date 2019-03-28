@@ -25,8 +25,8 @@ class CreateCssClassIntention : PsiElementBaseIntentionAction(), HighPriorityAct
 
     @Throws(IncorrectOperationException::class)
     override fun invoke(project: Project, editor: Editor, element: PsiElement) {
-        val intentionElement = getIntentionElement(element)
-        for (psiReference in intentionElement!!.references) {
+        val intentionElement = getIntentionElement(element) ?: return
+        for (psiReference in intentionElement.references) {
             if (psiReference is UnknownCssModuleElement) {
                 val className = psiReference.rangeInElement.substring(intentionElement.text)
                 val stylesheetFile = psiReference.stylesheetFile ?: return
@@ -43,7 +43,7 @@ class CreateCssClassIntention : PsiElementBaseIntentionAction(), HighPriorityAct
                         if (editorLineEnd != null) {
                             val actionEvent = AnActionEvent.createFromDataContext(
                                     ActionPlaces.UNKNOWN, null,
-                                    DataManagerImpl.MyDataContext(cssEditor.component)
+                                    DataManagerImpl.getInstance().getDataContext(cssEditor.component)
                             )
                             PsiDocumentManager.getInstance(project).doPostponedOperationsAndUnblockDocument(cssEditor.document)
                             editorLineEnd.actionPerformed(actionEvent)
